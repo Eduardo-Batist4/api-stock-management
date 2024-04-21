@@ -26,9 +26,9 @@ module.exports = {
     },
     async put(req, res) {
         try {
-            const { name, input, output } = req.body;
+            const { name, input, output, quantity } = req.body;
 
-            if(!name && !input && !output) {
+            if(!name && !input && !output && !quantity) {
                 return res.status(400).json({ error: "Empty content." });
             }
 
@@ -38,7 +38,7 @@ module.exports = {
                 const hasUpdates = name !== existingProduct.name || input !== existingProduct.input || output !== existingProduct.output;
 
                 if(hasUpdates) {
-                    await Product.update({name, input, output}, {
+                    await Product.update({name, input, output, quantity}, {
                         where: {
                             id: req.params.id
                         }
