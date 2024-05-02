@@ -5,7 +5,7 @@ module.exports = {
         try {
             const { name, input, output } = req.body;
 
-            if(!name || !input || !output) {
+            if(!name && !input && !output) {
                 return res.status(400).json({error: "Empty content."});
             }
 
@@ -26,9 +26,9 @@ module.exports = {
     },
     async put(req, res) {
         try {
-            const { name, input, output, quantity } = req.body;
+            const { name, input, output } = req.body;
 
-            if(!name && !input && !output && !quantity) {
+            if(!name && !input && !output) {
                 return res.status(400).json({ error: "Empty content." });
             }
 
@@ -38,7 +38,7 @@ module.exports = {
                 const hasUpdates = name !== existingProduct.name || input !== existingProduct.input || output !== existingProduct.output;
 
                 if(hasUpdates) {
-                    await Product.update({name, input, output, quantity}, {
+                    await Product.update({name, input, output }, {
                         where: {
                             id: req.params.id
                         }
