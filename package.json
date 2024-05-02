@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
-    "vercel-build": "npx sequelize db:migrate"
+    "start": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
